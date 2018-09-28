@@ -1,0 +1,47 @@
+﻿@model CartIndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<div class="products">
+    <h2 class="product-caption">Корзина покупателя</h2>
+    <table class="cart table border">
+        <thead>
+            <tr>
+                <th>Количество</th>
+                <th>Картина</th>
+                <th>Цена</th>
+                <th>Общая цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.Cart.Lines)
+            {
+                <tr>
+                    <td>@line.Quantity</td>
+                    <td>@line.Product.Name</td>
+                    <td>@line.Product.Price.ToString("c")</td>
+                    <td>@((line.Quantity * line.Product.Price).ToString("c"))</td>
+                    <td>
+                        @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                        {
+                            @Html.Hidden("productId", line.Product.Id)
+                            @Html.Hidden("returnUrl",Model.returnUrl)
+                            <input type="submit" value="Убрать с корзины" class="buy-btn continue-btn remove-btn" />
+                        }
+                    </td>
+                </tr>   
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">Всего:</td>
+                <td>
+                    @Model.Cart.TotalValue().ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <p class="actionButtons">
+        <a href="@Model.returnUrl" class="buy-btn continue-btn">Продолжить</a>
+    </p>
+</div>

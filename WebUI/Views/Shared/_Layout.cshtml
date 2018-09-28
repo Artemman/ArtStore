@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Вас интересует исскуство? Онлайн магазин УЛисичкиShop предостваляет широкий выбор картин ручной работы!" />
+    <meta name="keywords" content="Живопись, арт,картины маслом, исскуство,купить картины ручной работы,онлайн магазин картин,купить картины,акварель, купить картины акварель,купить картины маслом" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/scripts.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a class="logo" href="">
+                <img src="~/Content/Images/Fox.png" />
+                <span>УЛисичкиSHOP</span>
+            </a>
+            @{ Html.RenderAction("Summary", "Cart");}
+            <div class="nav-toggle"><span><span></div>
+
+            <ul id="menu">
+                <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                <li>@Html.ActionLink("Галерея", "Index", "Gallery")</li>
+                <li>@Html.ActionLink("Оплата и доставка", "Index", "Deliver")</li>
+                <li>@Html.ActionLink("О художнике", "Index", "AboutPainer")</li>
+            </ul>
+            @using (Html.BeginForm("Find", "Search", FormMethod.Get, new { id = "searchform" }))
+            {
+                @Html.TextBox("tb_find", "", new { placeholder = "Искать на сайте..." })
+                <button type="submit"><i class="fa fa-search"></i></button>
+            }
+        </nav>
+    </header>
+    <div class="container body-content">
+        
+            <nav class="sideMenu">
+                <div class="categories-caption"><h1>Категории</h1></div>
+                <ul class="categories categories-caption">
+                   <li>@Html.ActionLink("Главная","Index","Home")</li>
+                    @{ Html.RenderAction("Menu", "Nav"); }
+                </ul>
+            </nav>
+            <div class="content"> @RenderBody()</div>
+              
+       
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

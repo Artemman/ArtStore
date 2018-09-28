@@ -1,0 +1,64 @@
+﻿@using WebUI.HtmlHelpers;
+@using WebUI.Models;
+@model ProductListViewModel
+
+@{
+    ViewBag.Title = "У Лисички SHOP картины ручной работы на любой вкус!";
+
+}
+
+<div class="products">
+    <div class="current-category">
+        @if (Model.CurrentCategory == null)
+        {
+            @Html.ActionLink("Главная", "Index", "Home")
+        }
+        else
+        {
+            @Html.ActionLink("Главная", "Index", "Home")@: /
+            @Html.RouteLink(Model.CurrentCategory,new { page = 1, category = Model.CurrentCategory,
+           controller ="Home",action="Index" });
+        }
+        <hr />
+
+    </div>
+    <div class="container-sort">
+        @using (Html.BeginForm("Index","Home",FormMethod.Get,new { }))
+        {
+            <span>Елементов на странице: @Html.DropDownList("userPageSize",new SelectList((int[])ViewBag.Sizes))</span>
+        }
+
+
+        <hr />
+    </div>
+    <ul class="list">
+        @foreach (var item in Model.Products)
+        {
+            <li class="product-wrapper">
+                <div class="product">
+                    <div class="product-photo">
+                        <a href=""><img src="~/Content/Images/tets.jpg" alt="" /></a>
+                        <h1>@item.Name</h1>
+                        <hr />
+                        <p>@item.Description</p>
+                       
+                        <a class="buy-btn" href="@Url.Action("Index","Info",new { productId = item.Id})">Купить</a>
+                        @*@Html.RouteLink("Купить",new { productId = item,controller="Info",action="Index" },new { @class = "buy-btn" })*@
+
+                        <span class="product-price">@item.Price.ToString("c")</span>
+                    </div>
+                </div>
+
+
+            </li>
+
+        }
+
+    </ul>
+    
+    <div class="pager page-links">
+        @Html.PageLinks(Model.pagingInfo, x => Url.Action("Index", new { page = x ,category = Model.CurrentCategory}))
+    </div>
+    <div class="clearfix"></div>
+
+</div>

@@ -1,0 +1,8 @@
+﻿@using Domain
+@model IQueryable <string>
+
+@foreach (var link in Model)
+{
+    <li>@Html.RouteLink(link, new { controller = "Home", action = "Index", category = link, page = 1 })</li>
+    
+}

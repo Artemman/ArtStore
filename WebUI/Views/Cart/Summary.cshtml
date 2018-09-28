@@ -1,0 +1,20 @@
+﻿@model Domain.Entities.Cart
+
+<div id="cart">
+    <span>
+        <b>Ваша корзина:</b>
+        @if (Model.Lines.Count > 0)
+        {
+            @Model.TotalValue().ToString();
+        }
+        else
+        {
+            @:Пуста
+        }
+        <a class="buy-btn show-cart-btn" href="@Url.Action("Index","Cart",new { returnUrl = Request.Url.PathAndQuery})">
+            <img src="~/Content/Images/bucket.png" />
+        </a>
+    </span>
+    
+
+</div>

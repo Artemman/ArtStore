@@ -1,0 +1,2 @@
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\WebUI.Tests\obj\Debug\WebUI.Tests.csprojAssemblyReference.cache
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\WebUI.Tests\obj\Debug\WebUI.Tests.csproj.CoreCompileInputs.cache

@@ -1,0 +1,53 @@
+﻿@model ProductInfo
+
+@{
+    ViewBag.Title = Model.Product.Name;
+}
+<div class="products">
+    <div class="current-category">
+        @Html.ActionLink("Вернуться", "Index", "Home")
+        <hr />
+    </div>
+    <div class="product-caption"><h2>@Model.Product.Name</h2></div>
+    <div class="row">
+        <div class="col-md-7 product-photo">
+            <img src="~/Content/Images/tets.jpg"/>
+        </div>
+        <div class="col-md-4 description">
+            <h2 class="product-caption">Описание:</h2>
+            <p >@Model.Product.Description</p>
+            <div class="properties">
+                <h2 class="product-caption">Характеристики товара:</h2>
+                <p>Цена: @Model.Product.Price</p>
+                <p>Размеры: 25x40 см</p>
+                <p>Краска: Akril 6000</p>
+                <p>Дата рисования: 27.08.2018</p>
+                @using (Html.BeginForm("AddToCart","Cart"))
+                {
+                    @Html.Hidden("productId", Model.Product.Id)
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input class="buy-btn addCartButton" value="Купить" type="submit"/>
+                }
+            </div>
+            
+        </div>
+    </div>
+    <hr />
+    <div class="same-products pager border">
+        
+     <h2 class="product-caption">Похожие картины</h2>
+     <ul class="same-products-list">
+         @foreach (var item in Model.SameProducts)
+         {
+            <li class="product-wrapper">
+                <div class="product product-item product-photo">
+                    <a href="@Url.Action("Index","Info",new { productId = item.Id})">
+                        <img  src="~/Content/Images/tets.jpg" /><h3>@item.Name</h3>
+                    </a>
+                </div></li>
+         }
+     </ul>
+     </div>
+</div>
+
+

@@ -1,0 +1,14 @@
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\bin\Debug\Domain.dll.config
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\bin\Debug\Domain.dll
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\bin\Debug\Domain.pdb
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\bin\Debug\EntityFramework.dll
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\bin\Debug\EntityFramework.xml
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\obj\Debug\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\obj\Debug\Domain.csproj.CopyComplete
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\obj\Debug\Domain.dll
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\obj\Debug\Domain.pdb
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\Artemman\source\ASP.NET MVC\ArtStore\Domain\obj\Debug\Domain.csprojAssemblyReference.cache
