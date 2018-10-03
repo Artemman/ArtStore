@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Domain.Product>
+
+
+@foreach (var item in Model)
+{
+    <li class="product-wrapper">
+        <div class="product">
+            <div class="product-photo">
+                <a href=""><img src="~/Content/Images/tets.jpg" alt="" /></a>
+                <h1>@item.Name</h1>
+                <hr />
+                <p>@item.Description</p>
+
+                <a class="buy-btn" href="@Url.Action("Index","Info",new { productId = item.Id})">Купить</a>
+                @*@Html.RouteLink("Купить",new { productId = item,controller="Info",action="Index" },new { @class = "buy-btn" })*@
+
+                <span class="product-price">@item.Price.ToString("c")</span>
+            </div>
+        </div>
+    </li>
+}
+

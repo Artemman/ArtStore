@@ -7,58 +7,83 @@
 
 }
 
+
 <div class="products">
     <div class="current-category">
-        @if (Model.CurrentCategory == null)
+        @if (Model.CurrentCategory == null || Model.CurrentCategory=="")
         {
             @Html.ActionLink("Главная", "Index", "Home")
         }
         else
         {
             @Html.ActionLink("Главная", "Index", "Home")@: /
-            @Html.RouteLink(Model.CurrentCategory,new { page = 1, category = Model.CurrentCategory,
-           controller ="Home",action="Index" });
+            @Html.RouteLink(Model.CurrentCategory, new { page = 1, category = Model.CurrentCategory,
+           controller = "Home", action = "Index" });
         }
         <hr />
 
     </div>
     <div class="container-sort">
-        @using (Html.BeginForm("Index","Home",FormMethod.Get,new { }))
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { }))
         {
-            <span>Елементов на странице: @Html.DropDownList("userPageSize",new SelectList((int[])ViewBag.Sizes))</span>
+            <span>Елементов на странице: @Html.DropDownList("userPageSize", new SelectList((int[])ViewBag.Sizes))</span>
         }
 
 
         <hr />
     </div>
-    <ul class="list">
-        @foreach (var item in Model.Products)
-        {
-            <li class="product-wrapper">
-                <div class="product">
-                    <div class="product-photo">
-                        <a href=""><img src="~/Content/Images/tets.jpg" alt="" /></a>
-                        <h1>@item.Name</h1>
-                        <hr />
-                        <p>@item.Description</p>
-                       
-                        <a class="buy-btn" href="@Url.Action("Index","Info",new { productId = item.Id})">Купить</a>
-                        @*@Html.RouteLink("Купить",new { productId = item,controller="Info",action="Index" },new { @class = "buy-btn" })*@
-
-                        <span class="product-price">@item.Price.ToString("c")</span>
-                    </div>
-                </div>
-
-
-            </li>
-
-        }
-
+    <ul class="list" id="scrolList">
+        @Html.Partial("_ListProduct", Model.Products)
     </ul>
-    
-    <div class="pager page-links">
-        @Html.PageLinks(Model.pagingInfo, x => Url.Action("Index", new { page = x ,category = Model.CurrentCategory}))
-    </div>
-    <div class="clearfix"></div>
+        @*@{ Html.RenderPartial("_ListProduct",Model.Products);}*@
+        <div id="loading"><img src="~/Content/Images/loading_spinner.gif"></div>
+        <div class="pager page-links">
+            @Html.PageLinks(Model.pagingInfo, x => Url.Action("Index", new { page = x, category = Model.CurrentCategory }))
+        </div>
+        <div class="clearfix"></div>
 
 </div>
+<script type="text/javascript">
+        $(function () {
+
+            $('div#loading').hide();
+
+            var page = @Model.pagingInfo.CurrentPage;
+            var category = '@Model.CurrentCategory';
+            var links = document.querySelectorAll(".page-links a")
+            console.log(links);
+                var _inCallback = false;
+                function loadItems() {
+                    if (page > -1 && !_inCallback && page<@Model.pagingInfo.TotalPages) {
+                        _inCallback = true;
+                        page++;
+                            $('div#loading').show();
+
+                            $.ajax({
+                            type: 'GET',
+                                url: category+"/Page"+page,
+                                success: function (data, textstatus) {
+                                if (data != '') {
+                                    $("#scrolList").append(data);
+                                    links[page - 2].className = "";
+                                    links[page-1].className = "selected";
+                                    
+                                }
+                                else {
+                                    page = -1;
+                                }
+                                _inCallback = false;
+                                    $("div#loading").hide();
+                            }
+                        });
+                    }
+                }
+            // обработка события скроллинга
+            $(window).scroll(function () {
+                    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+
+                        loadItems();
+                    }
+                });
+        })
+    </script>

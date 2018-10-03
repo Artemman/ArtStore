@@ -192,6 +192,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\bucket.png" />
     <Content Include="Content\Images\Fox.png" />
+    <Content Include="Content\Images\loading_spinner.gif" />
     <Content Include="Content\Images\tets.jpg" />
     <Content Include="Content\Images\wallpers.jpg" />
     <Content Include="favicon.ico" />
@@ -234,6 +235,7 @@
     <Content Include="Views\Test.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Summary.cshtml" />
+    <Content Include="Views\Home\_ListProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
